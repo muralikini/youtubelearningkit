@@ -102,31 +102,33 @@ def parse_time(time_str: str) -> float:
 
 
 def download_youtube_video(url: str, video_id: str):
-    """Download video with audio using yt-dlp"""
+    """Download video + audio using yt-dlp"""
     output_template = str(DOWNLOADS_DIR / f"{video_id}.%(ext)s")
     
     ydl_opts = {
         "format": "bestvideo*+bestaudio/bestvideo+bestaudio/best",
         "outtmpl": output_template,
         "merge_output_format": "mp4",
+        "ffmpeg_location": r"C:\ffmpeg\bin",      # ← This is the key fix
         "writesubtitles": True,
         "writeautomaticsub": True,
         "subtitleslangs": ["en"],
         "subtitlesformat": "srt",
-        "quiet": False,                    # Show some output for debugging
+        "quiet": True,
         "no_warnings": True,
         "sleep_requests": 2,
         "http_headers": {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         },
         "retries": 5,
+        "fragment_retries": 5,
     }
     
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
         
-        # Find downloaded file
+        # Find the downloaded video file
         video_path = None
         for ext in [".mp4", ".mkv", ".webm"]:
             candidate = DOWNLOADS_DIR / f"{video_id}{ext}"
@@ -141,20 +143,21 @@ def download_youtube_video(url: str, video_id: str):
                     break
 
         if not video_path:
-            st.error("Downloaded file not found.")
+            st.error("Could not find downloaded video file.")
             return None
 
         duration = probe_duration(video_path)
 
         return {
             "id": video_id,
-            "title": info.get("title", "Unknown"),
+            "title": info.get("title", "Unknown Title"),
             "channel": info.get("channel", "Unknown"),
             "duration": duration,
             "duration_str": str(timedelta(seconds=int(duration))),
             "path": video_path,
             "url": url,
         }
+        
     except Exception as e:
         st.error(f"Download failed: {str(e)}")
         return None
