@@ -101,69 +101,63 @@ def parse_time(time_str: str) -> float:
         return 0.0
 
 
-def download_youtube_video(url: str, video_id: str) -> Dict:
-    """Download video + best subtitles using yt-dlp (rate-limit friendly)"""
+def download_youtube_video(url: str, video_id: str):
+    """Download video with audio using yt-dlp"""
     output_template = str(DOWNLOADS_DIR / f"{video_id}.%(ext)s")
     
     ydl_opts = {
-        "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
+        "format": "bestvideo*+bestaudio/bestvideo+bestaudio/best",
         "outtmpl": output_template,
         "merge_output_format": "mp4",
         "writesubtitles": True,
         "writeautomaticsub": True,
-        "subtitleslangs": ["en", "en-US", "en-GB"],
+        "subtitleslangs": ["en"],
         "subtitlesformat": "srt",
-        "quiet": True,
+        "quiet": False,                    # Show some output for debugging
         "no_warnings": True,
-        "sleep_requests": 3,                    # ← More polite to YouTube
-        "sleep_interval": 2,
+        "sleep_requests": 2,
         "http_headers": {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         },
-        "retries": 8,
-        "fragment_retries": 8,
-        "ignoreerrors": True,                   # Continue even if subs fail
+        "retries": 5,
     }
     
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
+        
+        # Find downloaded file
+        video_path = None
+        for ext in [".mp4", ".mkv", ".webm"]:
+            candidate = DOWNLOADS_DIR / f"{video_id}{ext}"
+            if candidate.exists():
+                video_path = str(candidate)
+                break
+        
+        if not video_path:
+            for f in DOWNLOADS_DIR.glob(f"{video_id}.*"):
+                if f.suffix in [".mp4", ".mkv", ".webm"]:
+                    video_path = str(f)
+                    break
+
+        if not video_path:
+            st.error("Downloaded file not found.")
+            return None
+
+        duration = probe_duration(video_path)
+
+        return {
+            "id": video_id,
+            "title": info.get("title", "Unknown"),
+            "channel": info.get("channel", "Unknown"),
+            "duration": duration,
+            "duration_str": str(timedelta(seconds=int(duration))),
+            "path": video_path,
+            "url": url,
+        }
     except Exception as e:
         st.error(f"Download failed: {str(e)}")
         return None
-
-    # Find the downloaded video file
-    video_path = None
-    for ext in [".mp4", ".mkv", ".webm"]:
-        candidate = DOWNLOADS_DIR / f"{video_id}{ext}"
-        if candidate.exists():
-            video_path = str(candidate)
-            break
-    
-    if not video_path:
-        for f in DOWNLOADS_DIR.glob(f"{video_id}.*"):
-            if f.suffix in [".mp4", ".mkv", ".webm"]:
-                video_path = str(f)
-                break
-
-    if not video_path:
-        st.error("Could not find downloaded video file.")
-        return None
-
-    duration = probe_duration(video_path)
-
-    return {
-        "id": video_id,
-        "title": info.get("title", "Unknown Title"),
-        "channel": info.get("channel", "Unknown"),
-        "duration": duration,
-        "duration_str": str(timedelta(seconds=int(duration))),
-        "path": video_path,
-        "url": url,
-        "thumbnail": info.get("thumbnail"),
-        "view_count": info.get("view_count"),
-        "upload_date": info.get("upload_date"),
-    }
 
 
 def extract_transcript_from_srt(srt_path: str) -> str:
