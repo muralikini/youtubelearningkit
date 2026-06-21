@@ -1,0 +1,1092 @@
+1
+00:00:00,320 --> 00:00:06,799
+By 2026, AI could automate up to 70% of
+
+2
+00:00:04,480 --> 00:00:09,679
+everyday work tasks. In this video, I'm
+
+3
+00:00:06,799 --> 00:00:12,960
+sharing 17 new technology trends that
+
+4
+00:00:09,679 --> 00:00:15,679
+will shape 2026. From brain controlled
+
+5
+00:00:12,960 --> 00:00:17,440
+devices to walking robots and how
+
+6
+00:00:15,679 --> 00:00:20,560
+they're already starting to change the
+
+7
+00:00:17,440 --> 00:00:23,519
+way we live. Let's dive in. Number 17,
+
+8
+00:00:20,560 --> 00:00:25,920
+low code, no code development. You ever
+
+9
+00:00:23,519 --> 00:00:28,400
+feel like building an app or tool is
+
+10
+00:00:25,920 --> 00:00:30,480
+only for engineers? Well, as you can
+
+11
+00:00:28,400 --> 00:00:33,680
+already tell, that's not the case
+
+12
+00:00:30,480 --> 00:00:37,120
+anymore. By 2026, it's expected that
+
+13
+00:00:33,680 --> 00:00:40,079
+over 75% of new apps will be built using
+
+14
+00:00:37,120 --> 00:00:42,960
+lowode or no code platforms. That's
+
+15
+00:00:40,079 --> 00:00:45,440
+stuff like Glide, Bubble, and Microsoft
+
+16
+00:00:42,960 --> 00:00:48,000
+Power Apps where you just drag, drop,
+
+17
+00:00:45,440 --> 00:00:49,920
+and hit publish. Even OpenAI is letting
+
+18
+00:00:48,000 --> 00:00:53,600
+people build their own AI tools with
+
+19
+00:00:49,920 --> 00:00:55,440
+zero code using those custom GPTs. and
+
+20
+00:00:53,600 --> 00:00:58,239
+Google's app sheet businesses are
+
+21
+00:00:55,440 --> 00:01:02,399
+automating full workflows without hiring
+
+22
+00:00:58,239 --> 00:01:05,199
+devs. Number 16, AI crafted experience
+
+23
+00:01:02,399 --> 00:01:07,360
+in extended reality. VR isn't just
+
+24
+00:01:05,199 --> 00:01:10,400
+headsets and games anymore. It's getting
+
+25
+00:01:07,360 --> 00:01:13,520
+smart, like actually thinking for itself
+
+26
+00:01:10,400 --> 00:01:17,759
+smart. In 2026, we'll see more of these
+
+27
+00:01:13,520 --> 00:01:20,479
+AI powered XR or extended reality spaces
+
+28
+00:01:17,759 --> 00:01:22,640
+that generate themselves based on what
+
+29
+00:01:20,479 --> 00:01:24,799
+you're doing. Nvidia is already doing
+
+30
+00:01:22,640 --> 00:01:27,360
+this with real-time characters that hold
+
+31
+00:01:24,799 --> 00:01:29,360
+full-on conversations. Meta's pumping
+
+32
+00:01:27,360 --> 00:01:32,320
+billions into avatars that don't just
+
+33
+00:01:29,360 --> 00:01:35,680
+look better, they react, they improvise.
+
+34
+00:01:32,320 --> 00:01:37,840
+And at CES, virtual shops were adapting
+
+35
+00:01:35,680 --> 00:01:40,720
+their layout depending on how people
+
+36
+00:01:37,840 --> 00:01:44,079
+moved around. Number 15, smart
+
+37
+00:01:40,720 --> 00:01:46,000
+infrastructure and lo 2.0. All right,
+
+38
+00:01:44,079 --> 00:01:49,600
+let's zoom out a bit. Literally, by
+
+39
+00:01:46,000 --> 00:01:51,840
+2026, there will be over 30 billion IoT
+
+40
+00:01:49,600 --> 00:01:53,680
+devices. We're talking traffic lights
+
+41
+00:01:51,840 --> 00:01:56,240
+that adjust in real time based on
+
+42
+00:01:53,680 --> 00:01:59,360
+congestion, which is already a thing in
+
+43
+00:01:56,240 --> 00:02:02,000
+Singapore. Warehouses using AWS and
+
+44
+00:01:59,360 --> 00:02:04,799
+Verizon to track a quick inventory
+
+45
+00:02:02,000 --> 00:02:07,520
+without human input. And in South Korea,
+
+46
+00:02:04,799 --> 00:02:10,080
+they got smart poles that do everything
+
+47
+00:02:07,520 --> 00:02:14,000
+from air quality monitoring to charging
+
+48
+00:02:10,080 --> 00:02:16,879
+your phone. Number 14, privacy first AI
+
+49
+00:02:14,000 --> 00:02:20,080
+and local processing. Apple's new chips
+
+50
+00:02:16,879 --> 00:02:23,680
+can now handle AI tasks directly on your
+
+51
+00:02:20,080 --> 00:02:26,239
+device. No cloud, no upload, just fast
+
+52
+00:02:23,680 --> 00:02:28,560
+private processing. And Meta's Llama 3
+
+53
+00:02:26,239 --> 00:02:31,520
+models, you can run them locally, too.
+
+54
+00:02:28,560 --> 00:02:33,840
+Intel's Meteor Lake chips are designed
+
+55
+00:02:31,520 --> 00:02:36,239
+to do this out of the box with built-in
+
+56
+00:02:33,840 --> 00:02:39,200
+AI accelerators. With pressure building
+
+57
+00:02:36,239 --> 00:02:42,959
+from Europe's GDPR and California's
+
+58
+00:02:39,200 --> 00:02:46,800
+CCPA, AI is learning how to stay offline
+
+59
+00:02:42,959 --> 00:02:50,640
+and keep your data to itself. Number 13,
+
+60
+00:02:46,800 --> 00:02:54,080
+workflow automation at scale. Tools like
+
+61
+00:02:50,640 --> 00:02:56,000
+Service Now, UiPath, and Zapier are
+
+62
+00:02:54,080 --> 00:02:59,280
+helping companies automate full
+
+63
+00:02:56,000 --> 00:03:02,080
+workflows from hiring to invoicing. No
+
+64
+00:02:59,280 --> 00:03:04,800
+human hands needed. Service Now actually
+
+65
+00:03:02,080 --> 00:03:07,680
+reported up to 65% reduction in
+
+66
+00:03:04,800 --> 00:03:10,239
+repetitive work thanks to automation in
+
+67
+00:03:07,680 --> 00:03:12,159
+large companies. Amazon's warehouses
+
+68
+00:03:10,239 --> 00:03:14,480
+already use predictive analytics to
+
+69
+00:03:12,159 --> 00:03:16,560
+coordinate people and robots. So yeah,
+
+70
+00:03:14,480 --> 00:03:19,599
+we're not just talking about automating
+
+71
+00:03:16,560 --> 00:03:21,440
+tasks anymore. Whole processes are
+
+72
+00:03:19,599 --> 00:03:25,360
+running on their own and it's happening
+
+73
+00:03:21,440 --> 00:03:28,239
+fast. Number 12, AI enhanced robotics in
+
+74
+00:03:25,360 --> 00:03:30,560
+retail and logistics. Agility Robotics
+
+75
+00:03:28,239 --> 00:03:33,680
+started deploying its digital robot at
+
+76
+00:03:30,560 --> 00:03:36,080
+Amazon warehouses in 2024. Walmart,
+
+77
+00:03:33,680 --> 00:03:38,080
+they're using autonomous shelf scanners
+
+78
+00:03:36,080 --> 00:03:40,560
+in over a thousand stores. And if you're
+
+79
+00:03:38,080 --> 00:03:43,360
+on a college campus, chances are you've
+
+80
+00:03:40,560 --> 00:03:45,280
+seen one of those Starship or Kiwi bots
+
+81
+00:03:43,360 --> 00:03:47,440
+delivering food. These bots aren't
+
+82
+00:03:45,280 --> 00:03:49,760
+remote controlled. They're using AI
+
+83
+00:03:47,440 --> 00:03:51,840
+vision, realtime mapping, and they're
+
+84
+00:03:49,760 --> 00:03:54,319
+getting smarter every week, especially
+
+85
+00:03:51,840 --> 00:03:57,360
+with worker shortages. These robots are
+
+86
+00:03:54,319 --> 00:04:00,159
+here to stay. Number 11, AI native
+
+87
+00:03:57,360 --> 00:04:02,720
+operating systems. So, you know how your
+
+88
+00:04:00,159 --> 00:04:06,000
+phone suggests texts or autocorrects on
+
+89
+00:04:02,720 --> 00:04:08,239
+the fly? In 2026, that kind of AI won't
+
+90
+00:04:06,000 --> 00:04:10,400
+just be in apps. It's getting baked
+
+91
+00:04:08,239 --> 00:04:12,799
+directly into operating systems.
+
+92
+00:04:10,400 --> 00:04:15,040
+Microsoft's already testing C-Pilot
+
+93
+00:04:12,799 --> 00:04:17,680
+inside Windows 11, where you can
+
+94
+00:04:15,040 --> 00:04:20,320
+literally ask your desktop to summarize
+
+95
+00:04:17,680 --> 00:04:22,800
+files, rewrite emails, or generate
+
+96
+00:04:20,320 --> 00:04:24,880
+images without switching tabs. Apple's
+
+97
+00:04:22,800 --> 00:04:28,639
+expected to announce more AI native
+
+98
+00:04:24,880 --> 00:04:31,360
+features in MacOSS and iOS, too, running
+
+99
+00:04:28,639 --> 00:04:33,680
+on device with their new neural engines.
+
+100
+00:04:31,360 --> 00:04:36,160
+It's not just smarter apps anymore. It's
+
+101
+00:04:33,680 --> 00:04:39,520
+your entire system thinking with you
+
+102
+00:04:36,160 --> 00:04:42,720
+step by step. Number 10, wearables that
+
+103
+00:04:39,520 --> 00:04:44,479
+know you better than you do. Wearables
+
+104
+00:04:42,720 --> 00:04:46,479
+aren't just step counters anymore.
+
+105
+00:04:44,479 --> 00:04:48,800
+They're turning into 24/7 health
+
+106
+00:04:46,479 --> 00:04:51,840
+monitors that can track stress, blood
+
+107
+00:04:48,800 --> 00:04:54,320
+oxygen, and even early illness. Aura and
+
+108
+00:04:51,840 --> 00:04:56,880
+Whoop are already giving athletes and
+
+109
+00:04:54,320 --> 00:04:59,600
+everyday users recovery scores and sleep
+
+110
+00:04:56,880 --> 00:05:01,759
+cycles. Now, new models are adding blood
+
+111
+00:04:59,600 --> 00:05:04,080
+sugar tracking without finger pricks,
+
+112
+00:05:01,759 --> 00:05:06,240
+and companies like Mavano are working on
+
+113
+00:05:04,080 --> 00:05:08,560
+continuous blood pressure wearables.
+
+114
+00:05:06,240 --> 00:05:11,120
+Some smart rings even detect changes in
+
+115
+00:05:08,560 --> 00:05:12,800
+skin temperature before you get sick.
+
+116
+00:05:11,120 --> 00:05:15,520
+And the best part, a lot of these
+
+117
+00:05:12,800 --> 00:05:17,600
+devices now feed data to AI that gives
+
+118
+00:05:15,520 --> 00:05:20,960
+you personalized nudges, not just
+
+119
+00:05:17,600 --> 00:05:23,840
+numbers. Number nine, quantum computing
+
+120
+00:05:20,960 --> 00:05:26,639
+nears utility. Quantum computing has
+
+121
+00:05:23,840 --> 00:05:28,240
+always sounded like sci-fi, but 2026
+
+122
+00:05:26,639 --> 00:05:31,120
+might be the year it starts showing up
+
+123
+00:05:28,240 --> 00:05:34,960
+in real workflows. IBM hit a,000
+
+124
+00:05:31,120 --> 00:05:37,680
+quibbits in 2023 and plans to debut a
+
+125
+00:05:34,960 --> 00:05:40,160
+1386 Quibbit chip this year. They're
+
+126
+00:05:37,680 --> 00:05:41,919
+also developing error corrected systems
+
+127
+00:05:40,160 --> 00:05:43,919
+that are getting closer to doing
+
+128
+00:05:41,919 --> 00:05:46,880
+something useful like simulating
+
+129
+00:05:43,919 --> 00:05:49,759
+molecules for new drugs or optimizing
+
+130
+00:05:46,880 --> 00:05:52,639
+supply chains way faster than classical
+
+131
+00:05:49,759 --> 00:05:54,960
+computers. Companies like Google, ION Q,
+
+132
+00:05:52,639 --> 00:05:57,280
+and Regetti are right there in the race,
+
+133
+00:05:54,960 --> 00:06:00,160
+too. It's still early days, but the
+
+134
+00:05:57,280 --> 00:06:03,360
+demos are getting real and the pace is
+
+135
+00:06:00,160 --> 00:06:06,240
+quickening. Number eight, AR glasses
+
+136
+00:06:03,360 --> 00:06:08,880
+replace screens. We've been talking
+
+137
+00:06:06,240 --> 00:06:11,120
+about AR glasses for a decade, but now
+
+138
+00:06:08,880 --> 00:06:13,759
+they're finally closing in on actual
+
+139
+00:06:11,120 --> 00:06:15,840
+usefulness. Apple's Vision Pro got the
+
+140
+00:06:13,759 --> 00:06:18,400
+ball rolling, and now companies like
+
+141
+00:06:15,840 --> 00:06:20,800
+Meta, XR Real, and Samsung are working
+
+142
+00:06:18,400 --> 00:06:23,520
+on lightweight glasses with realtime
+
+143
+00:06:20,800 --> 00:06:26,160
+overlays. Things like live captions,
+
+144
+00:06:23,520 --> 00:06:28,240
+navigation arrows, and even translated
+
+145
+00:06:26,160 --> 00:06:30,639
+subtitles floating in front of you. By
+
+146
+00:06:28,240 --> 00:06:33,039
+2026, you might not need to pull out
+
+147
+00:06:30,639 --> 00:06:35,360
+your phone to reply to a text or check
+
+148
+00:06:33,039 --> 00:06:38,160
+directions. And with AI handling
+
+149
+00:06:35,360 --> 00:06:41,039
+context, these glasses could know what
+
+150
+00:06:38,160 --> 00:06:43,360
+info you want before you ask. Number
+
+151
+00:06:41,039 --> 00:06:46,720
+seven, AI and healthc care gets
+
+152
+00:06:43,360 --> 00:06:49,280
+personal. In 2024, Google Deep Mind
+
+153
+00:06:46,720 --> 00:06:51,759
+announced its AI model could detect 21
+
+154
+00:06:49,280 --> 00:06:53,919
+types of diseases from retinal scans,
+
+155
+00:06:51,759 --> 00:06:56,720
+sometimes earlier than humans could. In
+
+156
+00:06:53,919 --> 00:06:59,599
+the US, hospitals are starting to use AI
+
+157
+00:06:56,720 --> 00:07:02,800
+to analyze patient data and spot signs
+
+158
+00:06:59,599 --> 00:07:05,599
+of sepsis or cardiac risk hours before
+
+159
+00:07:02,800 --> 00:07:07,520
+symptoms show. We're also seeing AI used
+
+160
+00:07:05,599 --> 00:07:10,160
+in cancer treatment planning,
+
+161
+00:07:07,520 --> 00:07:14,000
+personalizing chemo regimens based on
+
+162
+00:07:10,160 --> 00:07:16,800
+your genetic makeup. Number six, Edge AI
+
+163
+00:07:14,000 --> 00:07:19,759
+chips everywhere. Chances are the next
+
+164
+00:07:16,800 --> 00:07:23,840
+phone or laptop you buy will have an AI
+
+165
+00:07:19,759 --> 00:07:27,039
+chip built in. In 2026, Edge AI means
+
+166
+00:07:23,840 --> 00:07:31,599
+realtime smarts right on your device. No
+
+167
+00:07:27,039 --> 00:07:34,240
+cloud, no lag. Apple's A17 Pro and M4
+
+168
+00:07:31,599 --> 00:07:36,720
+chips already do this, handling language
+
+169
+00:07:34,240 --> 00:07:39,039
+translation, image editing, and voice
+
+170
+00:07:36,720 --> 00:07:42,000
+recognition instantly. Qualcomm
+
+171
+00:07:39,039 --> 00:07:44,400
+Snapdragon X Elite is bringing that same
+
+172
+00:07:42,000 --> 00:07:47,199
+firepower to Windows laptops. And
+
+173
+00:07:44,400 --> 00:07:50,479
+Intel's Meteor Lake chips come with
+
+174
+00:07:47,199 --> 00:07:53,360
+MPUs, neural processing units that let
+
+175
+00:07:50,479 --> 00:07:56,080
+you run AI tasks with almost no power
+
+176
+00:07:53,360 --> 00:07:59,199
+drain. It's turning every device you own
+
+177
+00:07:56,080 --> 00:08:02,000
+into its own little brain. Number five,
+
+178
+00:07:59,199 --> 00:08:04,160
+AI powered home assistants. Smart
+
+179
+00:08:02,000 --> 00:08:06,800
+speakers used to just play music, but
+
+180
+00:08:04,160 --> 00:08:09,440
+now they're walking around. Amazon's
+
+181
+00:08:06,800 --> 00:08:12,720
+Astro, first introduced as a home robot
+
+182
+00:08:09,440 --> 00:08:15,039
+in 2021, is quietly getting smarter.
+
+183
+00:08:12,720 --> 00:08:17,599
+It's already being used for home patrol,
+
+184
+00:08:15,039 --> 00:08:19,759
+elder care, and voice command delivery
+
+185
+00:08:17,599 --> 00:08:21,599
+inside homes and offices. Apple's
+
+186
+00:08:19,759 --> 00:08:25,840
+rumored to be working on its own
+
+187
+00:08:21,599 --> 00:08:28,160
+tabletop robot, internally dubbed J595,
+
+188
+00:08:25,840 --> 00:08:30,720
+that could swivel and track users during
+
+189
+00:08:28,160 --> 00:08:33,360
+FaceTime calls. Meanwhile, in China,
+
+190
+00:08:30,720 --> 00:08:35,360
+humanoid showroom assistants are already
+
+191
+00:08:33,360 --> 00:08:37,760
+helping customers and handing out
+
+192
+00:08:35,360 --> 00:08:40,240
+brochures. These assistants are moving
+
+193
+00:08:37,760 --> 00:08:43,440
+past the voiceonly stage, adding
+
+194
+00:08:40,240 --> 00:08:46,800
+screens, wheels, arms, and in some
+
+195
+00:08:43,440 --> 00:08:49,920
+cases, facial expressions. Number four,
+
+196
+00:08:46,800 --> 00:08:52,000
+humanoid robots go commercial. We're now
+
+197
+00:08:49,920 --> 00:08:54,560
+at the point where humanoid robots
+
+198
+00:08:52,000 --> 00:08:57,600
+aren't just walking, they're working. In
+
+199
+00:08:54,560 --> 00:09:00,560
+2024, Figure AI signed a partnership
+
+200
+00:08:57,600 --> 00:09:02,160
+with BMW to bring its bipedal robot,
+
+201
+00:09:00,560 --> 00:09:04,720
+Figure01,
+
+202
+00:09:02,160 --> 00:09:07,440
+into automotive manufacturing. Agility
+
+203
+00:09:04,720 --> 00:09:09,920
+Robotics is deploying Digit in logistics
+
+204
+00:09:07,440 --> 00:09:12,399
+environments, and Tesla's Optimus is
+
+205
+00:09:09,920 --> 00:09:14,800
+already doing basic factory tasks like
+
+206
+00:09:12,399 --> 00:09:17,040
+folding laundry and sorting parts.
+
+207
+00:09:14,800 --> 00:09:20,320
+What's changed? These robots can now
+
+208
+00:09:17,040 --> 00:09:22,720
+walk, lift, and perform repetitive tasks
+
+209
+00:09:20,320 --> 00:09:24,560
+with just enough dexterity to be useful.
+
+210
+00:09:22,720 --> 00:09:26,720
+And more importantly, they're becoming
+
+211
+00:09:24,560 --> 00:09:28,880
+cheap enough to scale. Some models are
+
+212
+00:09:26,720 --> 00:09:33,040
+expected to cost less than a small car
+
+213
+00:09:28,880 --> 00:09:36,399
+by 2026. Number three, AI agents that
+
+214
+00:09:33,040 --> 00:09:38,399
+work for you. This one's moving fast. AI
+
+215
+00:09:36,399 --> 00:09:40,880
+agents aren't just responding to prompts
+
+216
+00:09:38,399 --> 00:09:43,600
+anymore. They're handling full tasks
+
+217
+00:09:40,880 --> 00:09:46,080
+from start to finish. Take Devon, an AI
+
+218
+00:09:43,600 --> 00:09:48,640
+software engineer demoed by Cognition
+
+219
+00:09:46,080 --> 00:09:52,080
+Labs in 2024. It can build a full
+
+220
+00:09:48,640 --> 00:09:55,519
+website, debug code, and deploy it live
+
+221
+00:09:52,080 --> 00:09:58,000
+all autonomously. Auto GPT and similar
+
+222
+00:09:55,519 --> 00:10:00,640
+tools can already chain tasks together,
+
+223
+00:09:58,000 --> 00:10:03,200
+plan an itinerary, book reservations,
+
+224
+00:10:00,640 --> 00:10:04,959
+and send you a summary. In companies,
+
+225
+00:10:03,200 --> 00:10:07,920
+these agents are being trained to
+
+226
+00:10:04,959 --> 00:10:09,680
+onboard employees, manage data, or
+
+227
+00:10:07,920 --> 00:10:11,839
+respond to clients automatically.
+
+228
+00:10:09,680 --> 00:10:14,880
+Instead of just chatting with AI, you're
+
+229
+00:10:11,839 --> 00:10:19,040
+starting to delegate to it. Number two,
+
+230
+00:10:14,880 --> 00:10:22,160
+generative AI becomes default. In 2026,
+
+231
+00:10:19,040 --> 00:10:25,200
+most of what you read, hear, or watch
+
+232
+00:10:22,160 --> 00:10:28,720
+will have been touched, if not created,
+
+233
+00:10:25,200 --> 00:10:31,040
+by generative AI. Open AAI, Google, and
+
+234
+00:10:28,720 --> 00:10:34,640
+Anthropic are pushing the limits of
+
+235
+00:10:31,040 --> 00:10:37,600
+large multimodal models like GPT5 and
+
+236
+00:10:34,640 --> 00:10:41,120
+Gemini Ultra, capable of handling text,
+
+237
+00:10:37,600 --> 00:10:43,920
+images, video, and even audio in a
+
+238
+00:10:41,120 --> 00:10:46,800
+single conversation. Adobe's Firefly and
+
+239
+00:10:43,920 --> 00:10:49,440
+Runway ML are powering commercial video
+
+240
+00:10:46,800 --> 00:10:52,000
+editing, while 11 Labs let you clone
+
+241
+00:10:49,440 --> 00:10:54,480
+voices and generate speech in seconds.
+
+242
+00:10:52,000 --> 00:10:56,399
+This isn't just a trend, it's a shift in
+
+243
+00:10:54,480 --> 00:10:58,320
+how content gets made. Whether you're
+
+244
+00:10:56,399 --> 00:11:02,079
+writing an article or producing a
+
+245
+00:10:58,320 --> 00:11:05,200
+podcast, AI is now part of the process.
+
+246
+00:11:02,079 --> 00:11:07,839
+Number one, the rise of brain computer
+
+247
+00:11:05,200 --> 00:11:11,760
+interfaces. And here it is, the wildest
+
+248
+00:11:07,839 --> 00:11:14,480
+one. Brain computer interfaces or BCIs
+
+249
+00:11:11,760 --> 00:11:17,760
+are starting to move from the lab to the
+
+250
+00:11:14,480 --> 00:11:20,240
+real world. In early 2024, Neurolink
+
+251
+00:11:17,760 --> 00:11:22,560
+confirmed it had implanted its first
+
+252
+00:11:20,240 --> 00:11:24,880
+chip in a human, allowing them to
+
+253
+00:11:22,560 --> 00:11:27,120
+control a computer cursor just by
+
+254
+00:11:24,880 --> 00:11:29,839
+thinking. Meanwhile, companies like
+
+255
+00:11:27,120 --> 00:11:32,240
+Synchron and Precision Neuroscience are
+
+256
+00:11:29,839 --> 00:11:34,800
+developing less invasive devices that
+
+257
+00:11:32,240 --> 00:11:37,040
+can restore mobility or communication
+
+258
+00:11:34,800 --> 00:11:40,079
+for people with paralysis. In clinical
+
+259
+00:11:37,040 --> 00:11:42,880
+trials, stroke patients have used BCIS
+
+260
+00:11:40,079 --> 00:11:44,880
+to regain control of limbs or send
+
+261
+00:11:42,880 --> 00:11:47,279
+messages through thought. We're still in
+
+262
+00:11:44,880 --> 00:11:48,880
+early days, but the implications are
+
+263
+00:11:47,279 --> 00:11:51,040
+massive, and they're no longer
+
+264
+00:11:48,880 --> 00:11:54,240
+theoretical. That wraps the full
+
+265
+00:11:51,040 --> 00:11:57,200
+countdown. 17 gamechanging trends that
+
+266
+00:11:54,240 --> 00:11:59,200
+aren't coming someday, they're unfolding
+
+267
+00:11:57,200 --> 00:12:00,480
+right now. If you've made it this far,
+
+268
+00:11:59,200 --> 00:12:02,240
+let us know what you think in the
+
+269
+00:12:00,480 --> 00:12:04,160
+comment section below. For more
+
+270
+00:12:02,240 --> 00:12:06,000
+interesting topics, make sure to watch
+
+271
+00:12:04,160 --> 00:12:07,839
+the recommended video that you see on
+
+272
+00:12:06,000 --> 00:12:10,560
+the screen right now. Thanks for
+
+273
+00:12:07,839 --> 00:12:10,560
+watching.
+
