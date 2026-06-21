@@ -11,15 +11,17 @@ import os
 import re
 import json
 import shutil
-
-# Get full path of ffmpeg and ffprobe (fixes Windows PATH issues)
-FFMPEG_PATH = r"C:\ffmpeg\bin\ffmpeg.exe"
-FFPROBE_PATH = r"C:\ffmpeg\bin\ffprobe.exe"
-
 from pathlib import Path
 from datetime import timedelta
 import tempfile
 from typing import Optional, List, Dict
+
+# Optional: faster-whisper for local transcription
+try:
+    from faster_whisper import WhisperModel
+    WHISPER_AVAILABLE = True
+except ImportError:
+    WHISPER_AVAILABLE = False
 
 # ====================== CONFIG ======================
 st.set_page_config(
@@ -64,7 +66,7 @@ def probe_duration(file_path: str) -> float:
     """Get video duration in seconds using ffprobe"""
     try:
         cmd = [
-            FFPROBE_PATH, "-v", "error", "-show_entries",
+            "ffprobe", "-v", "error", "-show_entries",
             "format=duration", "-of", "default=noprint_wrappers=1:nokey=1",
             file_path
         ]
@@ -101,66 +103,55 @@ def parse_time(time_str: str) -> float:
         return 0.0
 
 
-def download_youtube_video(url: str, video_id: str):
-    """Download video + audio using yt-dlp"""
+def download_youtube_video(url: str, video_id: str) -> Dict:
+    """Download video + best subtitles using yt-dlp"""
     output_template = str(DOWNLOADS_DIR / f"{video_id}.%(ext)s")
     
     ydl_opts = {
-        "format": "bestvideo*+bestaudio/bestvideo+bestaudio/best",
+        "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
         "outtmpl": output_template,
         "merge_output_format": "mp4",
-        "ffmpeg_location": r"C:\ffmpeg\bin",      # ← This is the key fix
         "writesubtitles": True,
         "writeautomaticsub": True,
-        "subtitleslangs": ["en"],
+        "subtitleslangs": ["en", "en-US", "en-GB"],
         "subtitlesformat": "srt",
         "quiet": True,
         "no_warnings": True,
-        "sleep_requests": 2,
-        "http_headers": {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        },
-        "retries": 5,
-        "fragment_retries": 5,
+        "progress_hooks": [lambda d: None],  # Can add progress later
     }
     
-    try:
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=True)
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(url, download=True)
         
-        # Find the downloaded video file
-        video_path = None
-        for ext in [".mp4", ".mkv", ".webm"]:
-            candidate = DOWNLOADS_DIR / f"{video_id}{ext}"
-            if candidate.exists():
-                video_path = str(candidate)
+    # Find the downloaded video file
+    video_path = None
+    for ext in [".mp4", ".mkv", ".webm"]:
+        candidate = DOWNLOADS_DIR / f"{video_id}{ext}"
+        if candidate.exists():
+            video_path = str(candidate)
+            break
+    
+    if not video_path:
+        # Fallback search
+        for f in DOWNLOADS_DIR.glob(f"{video_id}.*"):
+            if f.suffix in [".mp4", ".mkv", ".webm"]:
+                video_path = str(f)
                 break
-        
-        if not video_path:
-            for f in DOWNLOADS_DIR.glob(f"{video_id}.*"):
-                if f.suffix in [".mp4", ".mkv", ".webm"]:
-                    video_path = str(f)
-                    break
-
-        if not video_path:
-            st.error("Could not find downloaded video file.")
-            return None
-
-        duration = probe_duration(video_path)
-
-        return {
-            "id": video_id,
-            "title": info.get("title", "Unknown Title"),
-            "channel": info.get("channel", "Unknown"),
-            "duration": duration,
-            "duration_str": str(timedelta(seconds=int(duration))),
-            "path": video_path,
-            "url": url,
-        }
-        
-    except Exception as e:
-        st.error(f"Download failed: {str(e)}")
-        return None
+    
+    duration = probe_duration(video_path) if video_path else 0
+    
+    return {
+        "id": video_id,
+        "title": info.get("title", "Unknown Title"),
+        "channel": info.get("channel", "Unknown"),
+        "duration": duration,
+        "duration_str": str(timedelta(seconds=int(duration))),
+        "path": video_path,
+        "url": url,
+        "thumbnail": info.get("thumbnail"),
+        "view_count": info.get("view_count"),
+        "upload_date": info.get("upload_date"),
+    }
 
 
 def extract_transcript_from_srt(srt_path: str) -> str:
@@ -192,18 +183,18 @@ def extract_transcript_from_srt(srt_path: str) -> str:
 
 
 def trim_video(input_path: str, output_path: str, start_time: str, end_time: str) -> bool:
-    """Trim video using ffmpeg"""
+    """Trim video using ffmpeg (re-encodes for precision)"""
     try:
         start_sec = parse_time(start_time)
         end_sec = parse_time(end_time)
         duration = end_sec - start_sec
-
+        
         if duration <= 0:
             st.error("End time must be greater than start time.")
             return False
-
+        
         cmd = [
-            FFMPEG_PATH, "-y",
+            "ffmpeg", "-y",
             "-ss", str(start_sec),
             "-i", input_path,
             "-t", str(duration),
@@ -215,8 +206,7 @@ def trim_video(input_path: str, output_path: str, start_time: str, end_time: str
         subprocess.run(cmd, check=True, capture_output=True)
         return True
     except subprocess.CalledProcessError as e:
-        error_msg = e.stderr.decode() if e.stderr else str(e)
-        st.error(f"FFmpeg trim error: {error_msg}")
+        st.error(f"FFmpeg error: {e.stderr.decode() if e.stderr else str(e)}")
         return False
 
 
@@ -225,22 +215,24 @@ def enhance_video(input_path: str, output_path: str, mode: str = "lecture") -> b
     try:
         vf_filters = []
         af_filters = []
-
+        
         if mode == "lecture":
+            # Good for talking-head / screen recordings
             vf_filters = ["unsharp=5:5:0.8:5:5:0.8", "eq=contrast=1.1:brightness=0.02:saturation=1.05"]
             af_filters = ["loudnorm", "afftdn=nf=-25"]
+        elif mode == "stabilize":
+            vf_filters = ["vidstabdetect=shakiness=10:accuracy=15", "vidstabtransform=smoothing=10"]
+            # Note: vidstab requires two-pass in real use; simplified here
         elif mode == "audio_cleanup":
             af_filters = ["loudnorm", "afftdn=nf=-30", "highpass=f=80", "lowpass=f=15000"]
         elif mode == "sharpen_upscale":
             vf_filters = ["unsharp=7:7:1.0:7:7:0.0", "scale=-2:1080:flags=lanczos"]
-        elif mode == "stabilize":
-            vf_filters = ["vidstabdetect=shakiness=10:accuracy=15", "vidstabtransform=smoothing=10"]
-
+        
         vf = ",".join(vf_filters) if vf_filters else "null"
         af = ",".join(af_filters) if af_filters else "anull"
-
+        
         cmd = [
-            FFMPEG_PATH, "-y", "-i", input_path,
+            "ffmpeg", "-y", "-i", input_path,
             "-vf", vf,
             "-af", af,
             "-c:v", "libx264", "-crf", "20", "-preset", "medium",
@@ -251,8 +243,7 @@ def enhance_video(input_path: str, output_path: str, mode: str = "lecture") -> b
         subprocess.run(cmd, check=True, capture_output=True)
         return True
     except subprocess.CalledProcessError as e:
-        error_msg = e.stderr.decode() if e.stderr else str(e)
-        st.error(f"Enhance failed: {error_msg}")
+        st.error(f"Enhance failed: {e.stderr.decode() if e.stderr else str(e)}")
         return False
 
 
@@ -308,6 +299,43 @@ def split_video(input_path: str, output_dir: Path, parts: int = 4) -> List[str]:
     except Exception as e:
         st.error(f"Split failed: {str(e)}")
         return []
+
+
+# ====================== WHISPER TRANSCRIPTION (Phase 1) ======================
+def transcribe_with_whisper(video_path: str, model_size: str = "base") -> str:
+    """
+    Transcribe video audio using faster-whisper.
+    Returns formatted transcript with timestamps.
+    """
+    if not WHISPER_AVAILABLE:
+        st.error("faster-whisper is not installed. Please install it using: pip install faster-whisper")
+        return ""
+
+    try:
+        # Load model (downloads on first use)
+        model = WhisperModel(model_size, device="cpu", compute_type="int8")
+        
+        # Extract audio and transcribe
+        segments, info = model.transcribe(
+            video_path,
+            beam_size=5,
+            vad_filter=True,
+            vad_parameters=dict(min_silence_duration_ms=500)
+        )
+        
+        transcript_lines = []
+        for segment in segments:
+            start = str(timedelta(seconds=int(segment.start)))
+            end = str(timedelta(seconds=int(segment.end)))
+            text = segment.text.strip()
+            if text:
+                transcript_lines.append(f"[{start} --> {end}] {text}")
+        
+        return "\n".join(transcript_lines)
+        
+    except Exception as e:
+        st.error(f"Whisper transcription failed: {str(e)}")
+        return ""
 
 
 # ====================== UI ======================
@@ -521,26 +549,63 @@ with tab5:
     # Try to find existing subtitle file from download
     srt_candidates = list(DOWNLOADS_DIR.glob(f"{vid['id']}*.srt")) + list(DOWNLOADS_DIR.glob(f"{vid['id']}*.en.srt"))
     
+    # --- Mode Selection ---
+    if WHISPER_AVAILABLE:
+        transcription_mode = st.radio(
+            "Transcription Method",
+            options=["YouTube Captions (Fast)", "Local Whisper (Better Quality)"],
+            horizontal=True
+        )
+    else:
+        transcription_mode = "YouTube Captions (Fast)"
+        st.info("💡 Install `faster-whisper` for local transcription (better accuracy when captions are missing).")
+
     transcript_text = ""
     
-    if srt_candidates:
-        srt_file = str(srt_candidates[0])
-        st.success(f"✅ Found YouTube auto-captions: {Path(srt_file).name}")
-        
-        if st.button("📥 Load & Format Transcript", type="primary"):
-            transcript_text = extract_transcript_from_srt(srt_file)
-            # Save clean version
-            txt_path = TRANSCRIPTS_DIR / f"{vid['id']}_transcript.txt"
-            with open(txt_path, "w", encoding="utf-8") as f:
-                f.write(transcript_text)
-            st.success(f"Transcript saved to: {txt_path}")
-    else:
-        st.warning("No auto-captions found for this video.")
-        st.info("Tip: Many educational videos have good auto-generated captions. Try another video or use Whisper (advanced).")
-    
+    # ====================== YOUTUBE CAPTIONS MODE ======================
+    if transcription_mode == "YouTube Captions (Fast)":
+        if srt_candidates:
+            srt_file = str(srt_candidates[0])
+            st.success(f"✅ Found YouTube auto-captions: {Path(srt_file).name}")
+            
+            if st.button("📥 Load YouTube Transcript", type="primary"):
+                transcript_text = extract_transcript_from_srt(srt_file)
+                txt_path = TRANSCRIPTS_DIR / f"{vid['id']}_youtube_transcript.txt"
+                with open(txt_path, "w", encoding="utf-8") as f:
+                    f.write(transcript_text)
+                st.success(f"Transcript saved to: {txt_path}")
+        else:
+            st.warning("No YouTube auto-captions found for this video.")
+            st.info("Tip: Try 'Local Whisper' mode for transcription (requires installation).")
+
+    # ====================== LOCAL WHISPER MODE ======================
+    else:  # Local Whisper mode
+        if not WHISPER_AVAILABLE:
+            st.error("faster-whisper is not installed. Run: `pip install faster-whisper`")
+        else:
+            st.warning("⚠️ Local Whisper transcription can be slow on CPU (especially for long videos).")
+            
+            model_size = st.selectbox(
+                "Whisper Model Size",
+                options=["tiny", "base", "small"],
+                index=1,
+                help="tiny = fastest, small = better quality"
+            )
+            
+            if st.button("🎙️ Transcribe with Whisper", type="primary"):
+                with st.spinner(f"Transcribing with Whisper '{model_size}' model... This may take several minutes."):
+                    transcript_text = transcribe_with_whisper(video_path, model_size=model_size)
+                    
+                    if transcript_text:
+                        txt_path = TRANSCRIPTS_DIR / f"{vid['id']}_whisper_{model_size}.txt"
+                        with open(txt_path, "w", encoding="utf-8") as f:
+                            f.write(transcript_text)
+                        st.success(f"Whisper transcript saved to: {txt_path}")
+
+    # ====================== DISPLAY TRANSCRIPT ======================
     if transcript_text:
         st.subheader("Transcript with Timestamps")
-        st.text_area("Full Transcript", transcript_text, height=400)
+        st.text_area("Full Transcript", transcript_text, height=450)
         
         # Download buttons
         col_dl1, col_dl2 = st.columns(2)
@@ -551,8 +616,7 @@ with tab5:
                 file_name=f"{vid['id']}_transcript.txt"
             )
         with col_dl2:
-            # Also offer original SRT if exists
-            if srt_candidates:
+            if srt_candidates and transcription_mode == "YouTube Captions (Fast)":
                 with open(srt_candidates[0], "r", encoding="utf-8", errors="ignore") as f:
                     srt_content = f.read()
                 st.download_button(
@@ -560,17 +624,6 @@ with tab5:
                     srt_content,
                     file_name=Path(srt_candidates[0]).name
                 )
-    
-    # Future: Whisper option
-    with st.expander("Advanced: Use local Whisper for speech-to-text (requires installation)"):
-        st.markdown("""
-        To use Whisper:
-        1. `pip install openai-whisper`
-        2. Uncomment the Whisper code in the app (or ask me to add it)
-        3. It will transcribe the audio even if no YouTube captions exist.
-        
-        **Note:** First run downloads ~1-3GB model. Works offline after that.
-        """)
 
 # ------------------ TAB 6: LIBRARY ------------------
 with tab6:
