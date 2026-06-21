@@ -108,16 +108,21 @@ def download_youtube_video(url: str, video_id: str) -> Dict:
     output_template = str(DOWNLOADS_DIR / f"{video_id}.%(ext)s")
     
     ydl_opts = {
-        "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
-        "outtmpl": output_template,
-        "merge_output_format": "mp4",
-        "writesubtitles": True,
-        "writeautomaticsub": True,
-        "subtitleslangs": ["en", "en-US", "en-GB"],
-        "subtitlesformat": "srt",
-        "quiet": True,
-        "no_warnings": True,
-        "progress_hooks": [lambda d: None],  # Can add progress later
+    "format": "bestvideo*+bestaudio/bestvideo+bestaudio/best",
+    "outtmpl": output_template,
+    "merge_output_format": "mp4",
+    "ffmpeg_location": r"C:\ffmpeg\bin",     # ← Add this line
+    "writesubtitles": True,
+    "writeautomaticsub": True,
+    "subtitleslangs": ["en"],
+    "subtitlesformat": "srt",
+    "quiet": True,
+    "no_warnings": True,
+    "sleep_requests": 2,
+    "http_headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    },
+    "retries": 5,
     }
     
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
